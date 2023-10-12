@@ -1,0 +1,21 @@
+@import "./colors.css";
+@import "./font-families.css";
+
+/* Font families */
+:root {
+  --primary-font: var(--poppins);
+  --secondary-font: var(--bodoni);
+}
+
+/* Font colors */
+:root {
+  --main-color: var(--light-1);
+  --sub-color: var(--light-3);
+  --extra-color: var(--light-4);
+}
+
+.dark {
+  --main-color: var(--dark-1);
+  --sub-color: var(--dark-3);
+  --extra-color: var(--dark-4);
+}

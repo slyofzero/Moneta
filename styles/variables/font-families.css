@@ -1,0 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700;800&display=swap");
+/* font-family: 'EB Garamond', serif; */
+@import url("https://fonts.googleapis.com/css2?family=Libre+Bodoni:wght@400;500;600;700&display=swap");
+/* font-family: 'Libre Bodoni', serif; */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+/* font-family: 'Poppins', sans-serif;*/
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap");
+/* font-family: 'Montserrat', sans-serif; */
+
+:root {
+  --garamond: "EB Garamond", serif;
+  --bodoni: "Libre Bodoni", serif;
+  --poppins: "Poppins", sans-serif;
+  --montserrat: "Montserrat", sans-serif;
+}
