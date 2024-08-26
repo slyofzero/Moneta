@@ -14,6 +14,7 @@ function FormStep({ step, caption }: FormStepProps) {
 
   useEffect(() => {
     if (Number(queryStep) === step) setActive(true);
+    else setActive(false);
   }, [queryStep, step]);
 
   return (

@@ -1,14 +1,22 @@
 import { poppins, saira } from "@/pages/_app";
 import { Input } from "../Common/Input";
 import { Image, Link } from "../Common";
-import { classNames, isValidName, isValidNumber } from "@/utils";
+import {
+  classNames,
+  isValidEthAddress,
+  isValidName,
+  isValidNumber,
+} from "@/utils";
 import { FormEvent } from "react";
 import { Step1Data, useFormData } from "@/state";
 import { useRouter } from "next/router";
+import { useAccount } from "wagmi";
 
 export function FormStep1() {
-  const { setStep1Data } = useFormData();
+  const { setStep1Data, step1Data } = useFormData();
   const router = useRouter();
+
+  const { address } = useAccount();
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -30,7 +38,14 @@ export function FormStep1() {
 
       <form onSubmit={onSubmit} className="flex flex-col gap-12">
         <div className="relative mt-8 mb-4">
-          <Input name="deployer" label="CA Deployer" type={"lg"} required />
+          <Input
+            name="deployer"
+            label="CA Deployer (the token ownership along with locked LP will be sent to this address)"
+            type={"lg"}
+            defaultValue={address || step1Data.deployer}
+            required
+            match={[isValidEthAddress]}
+          />
 
           <Link
             href={"https://app.launchr.finance/"}
@@ -51,6 +66,7 @@ export function FormStep1() {
             placeholder="Type Input Here"
             match={[isValidName]}
             required
+            defaultValue={step1Data.name}
           />
 
           <Input
@@ -59,6 +75,7 @@ export function FormStep1() {
             placeholder="Type Input Here"
             match={[isValidName]}
             required
+            defaultValue={step1Data.symbol}
           />
 
           <Input
@@ -67,6 +84,7 @@ export function FormStep1() {
             placeholder="Type Input Here"
             required
             match={[isValidNumber]}
+            defaultValue={step1Data.supply}
           />
         </div>
 

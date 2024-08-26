@@ -1,23 +1,37 @@
 import { poppins } from "@/pages/_app";
 import { Input } from "../Common/Input";
-import { isValidName, isValidNumber } from "@/utils";
-import { FormEvent } from "react";
-import { Step1Data, useFormData } from "@/state";
+import { isValidNumber } from "@/utils";
+import { Dispatch, FormEvent } from "react";
+import { Step2Data, useFormData } from "@/state";
 import { useRouter } from "next/router";
+import { DropDown, Link } from "../Common";
+import { SetStateAction } from "jotai";
+
+const raiseTypes = [
+  "LP only",
+  "LP + Marketing Funds (Collateral Backed)",
+  "LP + Marketing Funds (Unsecured - Contact Team)",
+];
+
+const launchTypes = [
+  "Stealth Launch (Fair Launch)",
+  "Private sale + Fair Launch",
+  "Presale + Fair Launch",
+];
 
 export function FormStep2() {
-  const { setStep1Data, step1Data } = useFormData();
+  const { setStep2Data, step1Data, step2Data } = useFormData();
   const router = useRouter();
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const form = e.currentTarget;
-    const formData = Object.fromEntries(
-      new FormData(form).entries()
-    ) as unknown as Step1Data;
+    // const form = e.currentTarget;
+    // const formData = Object.fromEntries(
+    //   new FormData(form).entries()
+    // ) as unknown as Step2Data;
 
-    setStep1Data(formData);
+    // setStep2Data(formData);
     router.push({ pathname: router.pathname, query: { step: 3 } });
   };
 
@@ -27,12 +41,13 @@ export function FormStep2() {
       className={`flex flex-col gap-16 ${poppins.className}`}
     >
       <div className="grid grid-cols-2 text-xl mt-32 gap-x-4 gap-6">
-        <Input
+        <DropDown
           name="raiseType"
           label="Raise Type"
-          placeholder="Type Input Here"
-          match={[isValidName]}
-          required
+          options={raiseTypes}
+          defaultValue={raiseTypes[1]}
+          setValue={setStep2Data as Dispatch<SetStateAction<Step2Data>>}
+          value={step2Data.raiseType}
         />
         <Input
           name="supply"
@@ -105,12 +120,13 @@ export function FormStep2() {
           match={[isValidNumber]}
           required
         />
-        <Input
+        <DropDown
           name="launchType"
-          label="Select Launch Type"
-          placeholder="Private Sale + Fair Launch"
-          match={[isValidNumber]}
-          required
+          label="Launch Type"
+          options={launchTypes}
+          defaultValue={launchTypes[1]}
+          setValue={setStep2Data as Dispatch<SetStateAction<Step2Data>>}
+          value={step2Data.launchType}
         />
         <Input
           name="preferredLPProvider"
@@ -160,8 +176,16 @@ export function FormStep2() {
         <span>Estimated mcap $</span>
 
         <div className="flex gap-4 justify-end">
-          <button className="border-[1.5px] px-16 py-2 rounded-xl">Back</button>
-          <button className="bg-white text-black border-[1.5px] px-16 py-2 rounded-xl font-semibold">
+          <Link
+            href={"/?step=1"}
+            className="border-[1.5px] px-16 py-2 rounded-xl"
+          >
+            Back
+          </Link>
+          <button
+            type="submit"
+            className="bg-white text-black border-[1.5px] px-16 py-2 rounded-xl font-semibold"
+          >
             Next
           </button>
         </div>

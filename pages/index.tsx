@@ -21,6 +21,8 @@ export default function Home() {
   useEffect(() => {
     if (!isNaN(step)) {
       router.push({ pathname: router.pathname, query: { step } });
+    } else {
+      router.push({ pathname: router.pathname, query: { step: 1 } });
     }
   }, [step]);
 
