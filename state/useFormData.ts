@@ -32,7 +32,7 @@ export interface Step2Data {
   preferredLPProvider: string;
   wallet1: string;
   wallet2: string;
-  tier: string;
+  tier: "Common LFP" | "Gold LFP";
 }
 
 const defaultStep2Data: Step2Data = {
@@ -49,7 +49,7 @@ const defaultStep2Data: Step2Data = {
   preferredLPProvider: "",
   wallet1: "",
   wallet2: "",
-  tier: "",
+  tier: "Common LFP",
   loanDisbursementDate: 0,
 };
 const step2Atom = atom<Step2Data>(defaultStep2Data);

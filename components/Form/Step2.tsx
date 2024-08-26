@@ -1,11 +1,12 @@
 import { poppins } from "@/pages/_app";
 import { Input } from "../Common/Input";
-import { isValidNumber } from "@/utils";
+import { isValidEthAddress, isValidName, isValidNumber } from "@/utils";
 import { Dispatch, FormEvent } from "react";
 import { Step2Data, useFormData } from "@/state";
 import { useRouter } from "next/router";
-import { DropDown, Link } from "../Common";
+import { DatePicker, DropDown, Link } from "../Common";
 import { SetStateAction } from "jotai";
+import { TierSelector } from "../Common/TierSelector";
 
 const raiseTypes = [
   "LP only",
@@ -82,7 +83,7 @@ export function FormStep2() {
           name="collateralAsset"
           label="Preferred asset for collateral [ERC20]"
           placeholder="For LFP without collateral select ‘non collateral backed type’"
-          match={[isValidNumber]}
+          match={[isValidEthAddress]}
           required
         />
         <Input
@@ -94,31 +95,25 @@ export function FormStep2() {
         />
         <Input
           name="collateralAmount"
-          label="Amount for collateral [Token Value & $ Value]"
+          label="Amount for collateral [Token Value]"
           placeholder="$ Value is auto calculated using Dextools API"
           match={[isValidNumber]}
           required
         />
-        <Input
+        <DatePicker
           name="launchDate"
-          label="Launch Date and Time [UTC Timezone]"
-          placeholder="2024-08-26 18:00"
-          match={[isValidNumber]}
-          required
+          label="Launch Date [UTC Timezone]"
+          setValue={setStep2Data as Dispatch<SetStateAction<Step2Data>>}
         />
-        <Input
+        <DatePicker
           name="repaymentDate"
-          label="Final Repayment Date and Time [UTC Timezone]"
-          placeholder="2024-08-26 18:00"
-          match={[isValidNumber]}
-          required
+          label="Final Repayment Date [UTC Timezone]"
+          setValue={setStep2Data as Dispatch<SetStateAction<Step2Data>>}
         />
-        <Input
+        <DatePicker
           name="loanDisbursementDate"
-          label="Loan Disbursement Date and Time [UTC Timezone]"
-          placeholder="2024-08-26 18:00"
-          match={[isValidNumber]}
-          required
+          label="Loan Disbursement Date [UTC Timezone]"
+          setValue={setStep2Data as Dispatch<SetStateAction<Step2Data>>}
         />
         <DropDown
           name="launchType"
@@ -132,44 +127,31 @@ export function FormStep2() {
           name="preferredLPProvider"
           label="Preferred LP Provider [if any]"
           placeholder="Type Input Here"
-          match={[isValidNumber]}
+          match={[isValidName]}
           required
         />
       </div>
 
       <div className="grid grid-cols-2 gap-x-4">
         <Input
-          name="wallet1"
-          label="???? Wallet"
+          name="taxWallet1"
+          label="Tax Wallet 1"
           placeholder=""
-          match={[isValidNumber]}
+          match={[isValidEthAddress]}
           required
         />
         <Input
-          name="wallet2"
-          label="???? Wallet"
+          name="taxWallet2"
+          label="Tax Wallet 2"
           placeholder=""
-          match={[isValidNumber]}
+          match={[isValidEthAddress]}
           required
         />
       </div>
 
       <div className="flex flex-col gap-8">
         <h6>Select Tier:</h6>
-
-        <div className="grid grid-cols-2 gap-x-4">
-          <div className="flex flex-col gap-2 items-center justify-center p-4 py-8 border-2 rounded-3xl bg-zinc-700">
-            <h3 className="font-bold text-xl">COMMON LFP</h3>
-            <h6>Common Launch without any special Perks</h6>
-            <h6>Initials Secured + 0.2E + 2% Supply</h6>
-          </div>
-
-          <div className="flex flex-col gap-2 items-center justify-center p-4 py-8 rounded-3xl bg-zinc-900">
-            <h3 className="font-bold text-xl">GOLD LFP</h3>
-            <h6>Must hold 0.50% $MNTA Supply to be eligible</h6>
-            <h6>Initials Secured + 1% Supply </h6>
-          </div>
-        </div>
+        <TierSelector />
       </div>
 
       <div className="flex flex-col gap-2 items-end mb-32">
