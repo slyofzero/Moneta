@@ -37,3 +37,16 @@ export const isValidEthAddress: MatchFuncType = (address) => {
 
   return true;
 };
+
+// ------------------------------ To check if a URL is valid ------------------------------
+export const isValidWebsite: MatchFuncType = (url) => {
+  const websitePattern =
+    /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/;
+  const isUrlValid = websitePattern.test(url);
+
+  if (!isUrlValid) {
+    return "Please enter a valid website URL.";
+  }
+
+  return true;
+};

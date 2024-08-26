@@ -30,8 +30,8 @@ export interface Step2Data {
   loanDisbursementDate: number;
   launchType: string;
   preferredLPProvider: string;
-  wallet1: string;
-  wallet2: string;
+  taxWallet1: string;
+  taxWallet2: string;
   tier: "Common LFP" | "Gold LFP";
 }
 
@@ -47,8 +47,8 @@ const defaultStep2Data: Step2Data = {
   repaymentDate: 0,
   launchType: "",
   preferredLPProvider: "",
-  wallet1: "",
-  wallet2: "",
+  taxWallet1: "",
+  taxWallet2: "",
   tier: "Common LFP",
   loanDisbursementDate: 0,
 };

@@ -1,5 +1,7 @@
 import { poppins, saira } from "@/pages/_app";
 import { useFormData } from "@/state";
+import { StoredForm } from "@/types";
+import { useRouter } from "next/router";
 
 interface RowProps {
   item: string;
@@ -9,13 +11,14 @@ function Row({ item, value }: RowProps) {
   return (
     <div className="flex justify-between border-b-[1.5px] border-gray-800 pb-1">
       <span className="text-gray-400">{item}</span>
-      <span className={saira.className}>{value}</span>
+      <span className={saira.className}>{value || "—"}</span>
     </div>
   );
 }
 
 export function FormStep4() {
   const { step1Data, step2Data, step3Data } = useFormData();
+  const router = useRouter();
 
   const tokenData = {
     "CA Deployer": step1Data.deployer,
@@ -28,7 +31,6 @@ export function FormStep4() {
     "Collateral Token": step2Data.collateralAsset,
     "Collateral Token Amount": `${step2Data.collateralAmount} ${step2Data.collateralAsset}`,
     "Collateral Token $ Value": step2Data.collateralAmount,
-    "Circulating Supply": step1Data.supply,
     "Token Launch Time": step2Data.launchDate,
     "Preferred LP Provider": step2Data.preferredLPProvider,
     "Launch Type": step2Data.launchType,
@@ -50,6 +52,22 @@ export function FormStep4() {
     Reddit: step3Data.reddit,
   };
 
+  async function completeForm() {
+    const toSendData: StoredForm = {
+      ...step1Data,
+      ...step2Data,
+      ...step3Data,
+      status: "PENDING",
+    };
+    const response = await fetch("/api/form", {
+      method: "POST",
+      body: JSON.stringify({ data: toSendData }),
+    });
+    if (response.ok) {
+      router.push("/profile");
+    }
+  }
+
   return (
     <div className="flex flex-col gap-16">
       <div className={`flex flex-col gap-4 mt-32 ${poppins.className}`}>
@@ -70,8 +88,11 @@ export function FormStep4() {
 
       <div className="flex gap-4 justify-end mb-32">
         <button className="border-[1.5px] px-16 py-2 rounded-xl">Back</button>
-        <button className="bg-white text-black border-[1.5px] px-16 py-2 rounded-xl font-semibold">
-          Next
+        <button
+          onClick={completeForm}
+          className="bg-white text-black border-[1.5px] px-16 py-2 rounded-xl font-semibold"
+        >
+          Complete
         </button>
       </div>
     </div>

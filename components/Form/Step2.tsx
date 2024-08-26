@@ -27,12 +27,12 @@ export function FormStep2() {
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // const form = e.currentTarget;
-    // const formData = Object.fromEntries(
-    //   new FormData(form).entries()
-    // ) as unknown as Step2Data;
+    const form = e.currentTarget;
+    const formData = Object.fromEntries(
+      new FormData(form).entries()
+    ) as unknown as Step2Data;
 
-    // setStep2Data(formData);
+    setStep2Data((prev) => ({ ...prev, ...formData }));
     router.push({ pathname: router.pathname, query: { step: 3 } });
   };
 
@@ -128,7 +128,6 @@ export function FormStep2() {
           label="Preferred LP Provider [if any]"
           placeholder="Type Input Here"
           match={[isValidName]}
-          required
         />
       </div>
 

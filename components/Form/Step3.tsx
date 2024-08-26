@@ -1,12 +1,12 @@
 import { poppins } from "@/pages/_app";
 import { Input } from "../Common/Input";
-import { isValidName, isValidNumber } from "@/utils";
 import { FormEvent } from "react";
-import { Step1Data, useFormData } from "@/state";
+import { Step3Data, useFormData } from "@/state";
 import { useRouter } from "next/router";
+import { Link } from "../Common";
 
 export function FormStep3() {
-  const { setStep1Data } = useFormData();
+  const { setStep3Data } = useFormData();
   const router = useRouter();
 
   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -15,10 +15,10 @@ export function FormStep3() {
     const form = e.currentTarget;
     const formData = Object.fromEntries(
       new FormData(form).entries()
-    ) as unknown as Step1Data;
+    ) as unknown as Step3Data;
 
-    setStep1Data(formData);
-    router.push({ pathname: router.pathname, query: { step: 3 } });
+    setStep3Data(formData);
+    router.push({ pathname: router.pathname, query: { step: 4 } });
   };
 
   return (
@@ -31,71 +31,46 @@ export function FormStep3() {
           name="logo"
           label="Logo"
           placeholder="ex. https://www.website.com"
-          match={[isValidName]}
-          required
-        />
-        <Input
-          name="logo"
-          label="Logo"
-          placeholder="ex. https://www.website.com"
-          match={[isValidName]}
-          required
         />
         <Input
           name="website"
           label="Website"
           placeholder="ex. https://www.website.com"
-          match={[isValidNumber]}
-          required
         />
         <Input
           name="telegram"
           label="Telegram"
           placeholder="ex. https://tel.me"
-          match={[isValidNumber]}
-          required
         />
         <Input
           name="github"
           label="Github"
           placeholder="ex. https://github.com"
-          match={[isValidNumber]}
-          required
         />
         <Input
           name="twitter"
           label="Twitter"
           placeholder="ex. https://twitter.com"
-          match={[isValidNumber]}
-          required
         />
         <Input
           name="discord"
           label="Discord"
           placeholder="ex. https://discord.com"
-          match={[isValidNumber]}
-          required
         />
         <Input
           name="youtube"
           label="Youtube"
           placeholder="ex. https://youtube.com"
-          match={[isValidNumber]}
-          required
         />
         <Input
           name="content"
           label="content"
           placeholder="ex. https://website.com"
-          match={[isValidNumber]}
-          required
         />
         <Input
           name="reddit"
           label="Reddit"
           placeholder="ex. https://reddit.com"
-          match={[isValidNumber]}
-          required
         />
       </div>
 
@@ -110,8 +85,16 @@ export function FormStep3() {
       </div>
 
       <div className="flex gap-4 justify-end mt-12 mb-32">
-        <button className="border-[1.5px] px-16 py-2 rounded-xl">Back</button>
-        <button className="bg-white text-black border-[1.5px] px-16 py-2 rounded-xl font-semibold">
+        <Link
+          href={"/?step=2"}
+          className="border-[1.5px] px-16 py-2 rounded-xl"
+        >
+          Back
+        </Link>
+        <button
+          type="submit"
+          className="bg-white text-black border-[1.5px] px-16 py-2 rounded-xl font-semibold"
+        >
           Next
         </button>
       </div>
