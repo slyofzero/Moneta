@@ -10,9 +10,9 @@ export function Input({
   match,
   label,
   labelClassName = "",
-  onChange,
   type,
   required,
+  containerClassName,
   ...props
 }: InputProps) {
   const fieldId = useId();
@@ -23,33 +23,39 @@ export function Input({
     });
 
   const labelComponent = (
-    <label className={classNames("fw-bold", labelClassName)} htmlFor={fieldId}>
+    <label
+      className={classNames("fw-bold text-sm ml-4", labelClassName)}
+      htmlFor={fieldId}
+    >
       {label}
     </label>
   );
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
-    checkValidation(value, onChange);
+    checkValidation(value);
   };
 
   return (
-    <div className={inputCva({ type })}>
-      <div className="d-flex justify-content-between">
+    <div className={classNames(inputCva({ type }), containerClassName || "")}>
+      <div className="flex justify-between">
         <ShowWhen component={labelComponent} when={label} />
-        <span className="text-danger">{validationError}</span>
+        <span className="text-red-500">{validationError}</span>
       </div>
 
       <input
         id={fieldId}
         ref={ref}
-        className={classNames("form-control", className)}
+        className={classNames(
+          "bg-black border-white rounded-2xl w-full border-[1.5px] outline-none px-4 placeholder:text-white/75",
+          className
+        )}
         onChange={handleInputChange}
         required={required}
         onInvalid={(e: ChangeEvent<HTMLInputElement>) => {
           e.preventDefault();
           const { value } = e.target;
-          checkValidation(value, onChange);
+          checkValidation(value);
         }}
         onInput={(e: ChangeEvent<HTMLInputElement>) => {
           e.target.setCustomValidity("");

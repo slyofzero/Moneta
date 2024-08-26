@@ -1,9 +1,5 @@
 import { useRef, useState } from "react";
-import {
-  ValidatableElement,
-  onChangeType,
-  useInputValidationProps,
-} from "./types";
+import { ValidatableElement, useInputValidationProps } from "./types";
 
 export function useInputValidation<T extends ValidatableElement>({
   required,
@@ -12,36 +8,32 @@ export function useInputValidation<T extends ValidatableElement>({
   const [validationError, setValidationError] = useState("");
   const ref = useRef<T>(null);
 
-  const checkValidation = (value: any, onChange?: onChangeType) => {
+  const checkValidation = (value: any) => {
     const name = ref.current?.name;
 
     if (name) {
-      const validate = (
-        matchedValue: string | boolean,
-        onChange: onChangeType
-      ) => {
+      const validate = (matchedValue: string | boolean) => {
         if (typeof matchedValue === "string") {
           setValidationError(matchedValue);
-          onChange(name, "");
           ref.current?.setCustomValidity("not valid");
         } else {
-          onChange(name, value);
           setValidationError("");
         }
       };
 
       if (!value && required) {
         setValidationError("Please enter a value");
-      } else if (match && onChange) {
-        const valueMatches = match(value);
+      } else if (match?.length) {
+        for (const matchFunc of match) {
+          const valueMatches = matchFunc(value);
 
-        if (valueMatches instanceof Promise) {
-          valueMatches.then((response) => validate(response, onChange));
-        } else {
-          validate(valueMatches, onChange);
+          if (valueMatches instanceof Promise) {
+            valueMatches.then((response) => validate(response));
+          } else {
+            validate(valueMatches);
+          }
         }
-      } else if (onChange) {
-        onChange(name, value);
+      } else {
         setValidationError("");
       }
     }

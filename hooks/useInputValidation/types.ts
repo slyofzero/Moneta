@@ -9,5 +9,5 @@ export type ValidatableElement =
 
 export interface useInputValidationProps {
   required?: boolean;
-  match?: MatchFuncType;
+  match?: MatchFuncType[];
 }

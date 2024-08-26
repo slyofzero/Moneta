@@ -4,7 +4,11 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --font-saira: "Saira", sans-serif;
+}
+
 body {
-  @apply text-light-1;
+  @apply bg-black text-white;
   /* font-family: var(--primary-font); */
 }

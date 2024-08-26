@@ -13,3 +13,15 @@ export const isValidName: MatchFuncType = (name) => {
 
   return true;
 };
+
+// ------------------------------ To check if the number is valid ------------------------------
+export const isValidNumber: MatchFuncType = (number) => {
+  const numberPattern = /^[0-9]+$/; // This pattern matches only digits (0-9)
+  const isNumberValid = numberPattern.test(number);
+
+  if (!isNumberValid) {
+    return "Please enter a valid number.";
+  }
+
+  return true;
+};

@@ -17,8 +17,9 @@ export type InputVariantProps = VariantProps<typeof inputCva>;
 export interface InputProps
   extends HTMLInputElementOmittedProps,
     InputVariantProps {
-  onChange: (name: string, value: string) => void;
   label?: string;
   labelClassName?: string;
-  match?: MatchFuncType;
+  containerClassName?: string;
+  match?: MatchFuncType[];
+  name: string;
 }

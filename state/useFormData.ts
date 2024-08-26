@@ -1,0 +1,98 @@
+import { useAtom, atom } from "jotai";
+
+// ------------------------------ Step 1 ------------------------------
+export interface Step1Data {
+  deployer: string;
+  name: string;
+  symbol: string;
+  supply: number;
+}
+
+const defaultStep1Data: Step1Data = {
+  deployer: "",
+  name: "",
+  symbol: "",
+  supply: 0,
+};
+const step1Atom = atom<Step1Data>(defaultStep1Data);
+
+// ------------------------------ Step 2 ------------------------------
+export interface Step2Data {
+  raiseType: string;
+  liquidity: number;
+  liquidityLocked: number;
+  loanAmountLP: number;
+  collateralAsset: string;
+  loanAmountMarketing: number;
+  collateralAmount: number;
+  launchDate: number;
+  repaymentDate: number;
+  loanDisbursementDate: number;
+  launchType: string;
+  preferredLPProvider: string;
+  wallet1: string;
+  wallet2: string;
+  tier: string;
+}
+
+const defaultStep2Data: Step2Data = {
+  raiseType: "",
+  liquidity: 0,
+  liquidityLocked: 0,
+  loanAmountLP: 0,
+  collateralAsset: "",
+  loanAmountMarketing: 0,
+  collateralAmount: 0,
+  launchDate: 0,
+  repaymentDate: 0,
+  launchType: "",
+  preferredLPProvider: "",
+  wallet1: "",
+  wallet2: "",
+  tier: "",
+  loanDisbursementDate: 0,
+};
+const step2Atom = atom<Step2Data>(defaultStep2Data);
+
+// ------------------------------ Step 3 ------------------------------
+export interface Step3Data {
+  logo: string;
+  website: string;
+  telegram: string;
+  twitter: string;
+  discord: string;
+  youtube: string;
+  content: string;
+  reddit: string;
+  github: string;
+  description: string;
+}
+
+const defaultStep3Data: Step3Data = {
+  logo: "",
+  website: "",
+  telegram: "",
+  twitter: "",
+  discord: "",
+  youtube: "",
+  content: "",
+  reddit: "",
+  github: "",
+  description: "",
+};
+const step3Atom = atom<Step3Data>(defaultStep3Data);
+
+export function useFormData() {
+  const [step1Data, setStep1Data] = useAtom(step1Atom);
+  const [step2Data, setStep2Data] = useAtom(step2Atom);
+  const [step3Data, setStep3Data] = useAtom(step3Atom);
+
+  return {
+    step1Data,
+    setStep1Data,
+    step2Data,
+    setStep2Data,
+    step3Data,
+    setStep3Data,
+  };
+}
