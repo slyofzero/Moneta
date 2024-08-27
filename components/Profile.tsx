@@ -3,7 +3,7 @@ import { StoredForm } from "@/types";
 import { useAccount } from "wagmi";
 import { FaSquare } from "react-icons/fa";
 
-interface ProfileResponse {
+export interface ProfileResponse {
   message: string;
   data: StoredForm[];
 }
