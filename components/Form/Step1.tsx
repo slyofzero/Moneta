@@ -57,7 +57,7 @@ export function FormStep1() {
               target="_blank"
               className={classNames(
                 saira.className,
-                "bg-white text-black text-xs h-12 w-32 flex items-center justify-center absolute top-1 right-1 rounded-xl"
+                " bg-white text-black text-xs h-12 w-32 hidden lg:flex items-center justify-center absolute top-1 right-1 rounded-xl"
               )}
             >
               Create Token
