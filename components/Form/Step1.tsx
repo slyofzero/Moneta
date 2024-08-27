@@ -37,26 +37,32 @@ export function FormStep1() {
       <h1 className="ml-4">Application for Liquidity Financing</h1>
 
       <form onSubmit={onSubmit} className="flex flex-col gap-12">
-        <div className="relative mt-8 mb-4">
-          <Input
-            name="deployer"
-            label="CA Deployer (the token ownership along with locked LP will be sent to this address)"
-            type={"lg"}
-            defaultValue={address || step1Data.deployer}
-            required
-            match={[isValidEthAddress]}
-          />
+        <div className="flex flex-col gap-2 mt-8">
+          <label className={classNames("fw-bold text-sm ml-4")}>
+            CA Deployer (the token ownership along with locked LP will be sent
+            to this address)
+          </label>
 
-          <Link
-            href={"https://app.launchr.finance/"}
-            target="_blank"
-            className={classNames(
-              saira.className,
-              "bg-white text-black text-xs h-12 w-32 flex items-center justify-center absolute top-8 right-1 rounded-xl"
-            )}
-          >
-            Create Token
-          </Link>
+          <div className="relative mb-4 h-fit">
+            <Input
+              name="deployer"
+              type={"lg"}
+              defaultValue={address || step1Data.deployer}
+              required
+              match={[isValidEthAddress]}
+            />
+
+            <Link
+              href={"https://app.launchr.finance/"}
+              target="_blank"
+              className={classNames(
+                saira.className,
+                "bg-white text-black text-xs h-12 w-32 flex items-center justify-center absolute top-1 right-1 rounded-xl"
+              )}
+            >
+              Create Token
+            </Link>
+          </div>
         </div>
 
         <div className="flex flex-col gap-8">

@@ -36,12 +36,19 @@ export function Input({
     checkValidation(value);
   };
 
+  const headerLikeComponent = (
+    <div className="flex justify-between">
+      <ShowWhen component={labelComponent} when={label} />
+      <span className="text-red-500">{validationError}</span>
+    </div>
+  );
+
   return (
     <div className={classNames(inputCva({ type }), containerClassName || "")}>
-      <div className="flex justify-between">
-        <ShowWhen component={labelComponent} when={label} />
-        <span className="text-red-500">{validationError}</span>
-      </div>
+      <ShowWhen
+        component={headerLikeComponent}
+        when={label || validationError}
+      />
 
       <input
         id={fieldId}
