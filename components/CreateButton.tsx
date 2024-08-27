@@ -21,7 +21,7 @@ export function CreateButton() {
             </DropdownMenu.Item>
 
             <DropdownMenu.Item className={itemClassName}>
-              <Link href={"https://app.launchr.finance/"}>LFP Creator</Link>
+              <Link href={"/form"}>LFP Creator</Link>
             </DropdownMenu.Item>
 
             <DropdownMenu.Item className={itemClassName}>
@@ -36,10 +36,10 @@ export function CreateButton() {
 
             <div className="flex flex-col gap-2">
               <div className="flex px-4 gap-2">
-                <Link href={"#"}>Twitter</Link> |{" "}
-                <Link href={"#"}>Website</Link> |{" "}
-                <Link href={"#"}>Telegram</Link> |{" "}
-                <Link href={"#"}>LinkTree</Link>
+                <Link href={"https://x.com/moneta_fi"}>Twitter</Link> |{" "}
+                <Link href={"https://monetafi.io/"}>Website</Link> |{" "}
+                <Link href={"https://t.me/moneta_portal"}>Telegram</Link> |{" "}
+                <Link href={"https://linktr.ee/Moneta_fi"}>LinkTree</Link>
               </div>
               <span className="text-gray-400 text-center">
                 Copyright Moneta Finance 2024
