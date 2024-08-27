@@ -23,11 +23,11 @@ export default async function handler(
     }
   } else if (req.method === "GET") {
     try {
-      const { address } = req.query;
+      const { user } = req.query;
 
       const userForms = await getDocument<StoredForm>({
         collectionName: "forms",
-        queries: [["user", "==", address]],
+        queries: [["user", "==", user]],
       });
 
       // You can send a response back to the client
