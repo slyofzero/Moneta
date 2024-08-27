@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useAccount } from "wagmi";
 import { Link } from "../Common";
-import { shortenAddress } from "@/utils/general";
+import { shortenAddress } from "@/utils/web3";
 
 interface RowProps {
   item: string;

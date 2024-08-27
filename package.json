@@ -38,7 +38,8 @@
     "tailwindcss": "3.3.3",
     "typescript": "5.2.2",
     "viem": "2.x",
-    "wagmi": "^2.12.7"
+    "wagmi": "^2.12.7",
+    "web3": "^4.12.1"
   },
   "devDependencies": {
     "postcss-import": "^15.1.0",
