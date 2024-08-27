@@ -25,7 +25,7 @@ function Launch({ data }: { data: StoredForm }) {
           <h4 className="text-2xl">Raise Type - {raiseType}</h4>
         </div>
         <span
-          className={`${statusStyle} flex items-center justify-center px-2 rounded-md text-xs font-semibold text-black gap-2`}
+          className={`${statusStyle} flex items-center justify-center px-2 rounded-md text-xs font-semibold text-black gap-2 h-fit py-2`}
         >
           <FaSquare /> {status}
         </span>
