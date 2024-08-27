@@ -150,17 +150,19 @@ interface Props {
   name: string;
   label: string;
   setValue: Dispatch<SetStateAction<Step2Data>>;
+  defaultValue?: string;
 }
 
-export function DatePicker({ name, label, setValue }: Props) {
+export function DatePicker({ name, label, setValue, defaultValue }: Props) {
   const [showCalender, setShowCalender] = useState(false);
   const today = startOfToday();
-  const formattedDate = moment(today).format("DD-MM-YYYY");
-  const [date, setDate] = useState(formattedDate);
+  const formattedTodayDate = moment(today).format("DD-MM-YYYY");
+  const [date, setDate] = useState(formattedTodayDate);
 
   useEffect(() => {
-    setValue((prev) => ({ ...prev, [name]: date }));
-  }, [setValue, name, date]);
+    if (date !== formattedTodayDate)
+      setValue((prev) => ({ ...prev, [name]: date }));
+  }, [setValue, name, date, formattedTodayDate]);
 
   return (
     <div className="relative flex flex-col gap-2">
@@ -169,7 +171,7 @@ export function DatePicker({ name, label, setValue }: Props) {
         className="flex items-center px-4 border-[1.5px] border-white h-10 rounded-2xl text-sm"
         onClick={() => setShowCalender((prev) => !prev)}
       >
-        {<span>{date}</span>}
+        {<span>{defaultValue || date}</span>}
       </div>
 
       {showCalender && (

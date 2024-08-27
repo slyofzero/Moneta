@@ -64,6 +64,7 @@ export function FormStep2() {
           placeholder="Type Input Here"
           match={[isValidNumber]}
           required
+          defaultValue={step2Data.liquidity}
         />
         <Input
           name="liquidityLocked"
@@ -71,6 +72,7 @@ export function FormStep2() {
           placeholder="Liquidity Locked Days after Launch Success is determined"
           match={[isValidNumber]}
           required
+          defaultValue={step2Data.liquidityLocked}
         />
         <Input
           name="loanAmountLP"
@@ -78,6 +80,7 @@ export function FormStep2() {
           placeholder="Type Input Here"
           match={[isValidNumber]}
           required
+          defaultValue={step2Data.loanAmountLP}
         />
         <Input
           name="collateralAsset"
@@ -85,6 +88,7 @@ export function FormStep2() {
           placeholder="For LFP without collateral select ‘non collateral backed type’"
           match={[isValidEthAddress]}
           required
+          defaultValue={step2Data.collateralAsset}
         />
         <Input
           name="loanAmountMarketing"
@@ -92,6 +96,7 @@ export function FormStep2() {
           placeholder="For LFP without collateral select ‘non collateral backed type’"
           match={[isValidNumber]}
           required
+          defaultValue={step2Data.loanAmountMarketing}
         />
         <Input
           name="collateralAmount"
@@ -99,21 +104,25 @@ export function FormStep2() {
           placeholder="$ Value is auto calculated using Dextools API"
           match={[isValidNumber]}
           required
+          defaultValue={step2Data.collateralAmount}
         />
         <DatePicker
           name="launchDate"
           label="Launch Date [UTC Timezone]"
           setValue={setStep2Data as Dispatch<SetStateAction<Step2Data>>}
+          defaultValue={step2Data.launchDate}
         />
         <DatePicker
           name="repaymentDate"
           label="Final Repayment Date [UTC Timezone]"
           setValue={setStep2Data as Dispatch<SetStateAction<Step2Data>>}
+          defaultValue={step2Data.repaymentDate}
         />
         <DatePicker
           name="loanDisbursementDate"
           label="Loan Disbursement Date [UTC Timezone]"
           setValue={setStep2Data as Dispatch<SetStateAction<Step2Data>>}
+          defaultValue={step2Data.loanDisbursementDate}
         />
         <DropDown
           name="launchType"
@@ -128,6 +137,7 @@ export function FormStep2() {
           label="Preferred LP Provider [if any]"
           placeholder="Type Input Here"
           match={[isValidName]}
+          defaultValue={step2Data.preferredLPProvider}
         />
       </div>
 
@@ -138,6 +148,7 @@ export function FormStep2() {
           placeholder=""
           match={[isValidEthAddress]}
           required
+          defaultValue={step2Data.taxWallet1}
         />
         <Input
           name="taxWallet2"
@@ -145,6 +156,7 @@ export function FormStep2() {
           placeholder=""
           match={[isValidEthAddress]}
           required
+          defaultValue={step2Data.taxWallet2}
         />
       </div>
 
@@ -158,7 +170,7 @@ export function FormStep2() {
 
         <div className="flex gap-4 justify-end">
           <Link
-            href={"/?step=1"}
+            href={"/form?step=1"}
             className="border-[1.5px] px-16 py-2 rounded-xl"
           >
             Back

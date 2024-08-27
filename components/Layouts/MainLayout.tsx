@@ -4,7 +4,6 @@ import { Image, Link } from "../Common";
 import { FaPlus } from "react-icons/fa6";
 import { classNames } from "@/utils";
 import { saira } from "@/pages/_app";
-import { FormNav } from "../FormNav";
 
 interface Props {
   children: React.ReactNode;
@@ -15,7 +14,7 @@ export function MainLayout({ children, className }: Props) {
   return (
     <main
       className={classNames(
-        "min-h-screen w-screen px-64",
+        "min-h-screen w-screen px-64 flex flex-col",
         saira.className,
         className || ""
       )}
@@ -32,7 +31,9 @@ export function MainLayout({ children, className }: Props) {
       />
 
       <header className="flex justify-between pt-8">
-        <Image src={"/banner.png"} alt="banner" className="w-48" />
+        <Link href={"/"}>
+          <Image src={"/banner.png"} alt="banner" className="w-48" />
+        </Link>
 
         <div className="flex items-center gap-4">
           <Link
@@ -46,8 +47,6 @@ export function MainLayout({ children, className }: Props) {
           <ConnectButton />
         </div>
       </header>
-
-      <FormNav />
 
       {children}
     </main>

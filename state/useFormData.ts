@@ -25,9 +25,9 @@ export interface Step2Data {
   collateralAsset: string;
   loanAmountMarketing: number;
   collateralAmount: number;
-  launchDate: number;
-  repaymentDate: number;
-  loanDisbursementDate: number;
+  launchDate: string;
+  repaymentDate: string;
+  loanDisbursementDate: string;
   launchType: string;
   preferredLPProvider: string;
   taxWallet1: string;
@@ -43,14 +43,14 @@ const defaultStep2Data: Step2Data = {
   collateralAsset: "",
   loanAmountMarketing: 0,
   collateralAmount: 0,
-  launchDate: 0,
-  repaymentDate: 0,
+  launchDate: "",
+  repaymentDate: "",
   launchType: "",
   preferredLPProvider: "",
   taxWallet1: "",
   taxWallet2: "",
   tier: "Common LFP",
-  loanDisbursementDate: 0,
+  loanDisbursementDate: "",
 };
 const step2Atom = atom<Step2Data>(defaultStep2Data);
 
