@@ -1,9 +1,9 @@
 import React from "react";
 import { ConnectButton } from "../blockchain/ConnectButton";
 import { Image, Link } from "../Common";
-import { FaPlus } from "react-icons/fa6";
 import { classNames } from "@/utils";
 import { saira } from "@/pages/_app";
+import { CreateButton } from "../CreateButton";
 
 interface Props {
   children: React.ReactNode;
@@ -36,14 +36,7 @@ export function MainLayout({ children, className }: Props) {
         </Link>
 
         <div className="flex flex-col lg:flex-row items-center gap-4">
-          <Link
-            className="bg-white text-black px-8 py-1 rounded-full text-xs lg:text-sm flex items-center gap-1"
-            href={"https://app.launchr.finance/"}
-            target="_blank"
-          >
-            <FaPlus className="mt-[0.05rem]" />
-            Create
-          </Link>
+          <CreateButton />
           <ConnectButton />
         </div>
       </header>
