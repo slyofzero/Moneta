@@ -21,12 +21,12 @@ export function MainLayout({ children, className }: Props) {
     >
       <Image
         src={"/left.png"}
-        className="h-auto w-52 absolute left-0 top-0 -z-10"
+        className="h-full w-52 absolute left-0 top-0 -z-10"
         alt="left"
       />
       <Image
         src={"/right.png"}
-        className="h-auto w-52 absolute right-0 top-0 -z-10"
+        className="h-full w-52 absolute right-0 top-0 -z-10"
         alt="right"
       />
 

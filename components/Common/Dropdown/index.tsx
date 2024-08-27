@@ -27,7 +27,7 @@ export function DropDown({
   }, [defaultValue, setValue, value, name]);
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-2 outline-none">
       <label className="text-sm  ml-4">{label}</label>
       <DropdownMenu.Root>
         <DropdownMenu.Trigger

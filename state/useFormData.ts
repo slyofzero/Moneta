@@ -1,4 +1,6 @@
+import { startOfToday } from "date-fns";
 import { useAtom, atom } from "jotai";
+import moment from "moment";
 
 // ------------------------------ Step 1 ------------------------------
 export interface Step1Data {
@@ -22,11 +24,11 @@ export interface Step2Data {
   liquidity: number;
   liquidityLocked: number;
   loanAmountLP: number;
-  collateralAsset: string;
-  loanAmountMarketing: number;
-  collateralAmount: number;
+  collateralAsset?: string;
+  loanAmountMarketing?: number;
+  collateralAmount?: number;
   launchDate: string;
-  repaymentDate: string;
+  repaymentDate?: string;
   loanDisbursementDate: string;
   launchType: string;
   preferredLPProvider: string;
@@ -35,6 +37,8 @@ export interface Step2Data {
   tier: "Common LFP" | "Gold LFP";
 }
 
+const today = startOfToday();
+const formattedTodayDate = moment(today).format("DD-MM-YYYY");
 const defaultStep2Data: Step2Data = {
   raiseType: "",
   liquidity: 0,
@@ -43,14 +47,14 @@ const defaultStep2Data: Step2Data = {
   collateralAsset: "",
   loanAmountMarketing: 0,
   collateralAmount: 0,
-  launchDate: "",
-  repaymentDate: "",
+  launchDate: formattedTodayDate,
+  repaymentDate: formattedTodayDate,
+  loanDisbursementDate: formattedTodayDate,
   launchType: "",
   preferredLPProvider: "",
   taxWallet1: "",
   taxWallet2: "",
   tier: "Common LFP",
-  loanDisbursementDate: "",
 };
 const step2Atom = atom<Step2Data>(defaultStep2Data);
 
@@ -59,6 +63,7 @@ export interface Step3Data {
   logo: string;
   website: string;
   telegram: string;
+  telegramAdmin: string;
   twitter: string;
   discord: string;
   youtube: string;
@@ -72,6 +77,7 @@ const defaultStep3Data: Step3Data = {
   logo: "",
   website: "",
   telegram: "",
+  telegramAdmin: "",
   twitter: "",
   discord: "",
   youtube: "",

@@ -2,6 +2,7 @@ import { useApi } from "@/hooks/useApi";
 import { StoredForm } from "@/types";
 import { useAccount } from "wagmi";
 import { FaSquare } from "react-icons/fa";
+import { Link } from "./Common";
 
 export interface ProfileResponse {
   message: string;
@@ -9,7 +10,7 @@ export interface ProfileResponse {
 }
 
 function Launch({ data }: { data: StoredForm }) {
-  const { name, symbol, supply, status, raiseType } = data;
+  const { name, symbol, supply, status, raiseType, website, chartUrl } = data;
   const statusStyle =
     status === "PENDING"
       ? "bg-orange-500"
@@ -47,13 +48,20 @@ function Launch({ data }: { data: StoredForm }) {
         </div>
       </div>
 
-      <div className="flex gap-8 mt-8">
-        <button className="bg-white text-black p-2 rounded-xl w-36">
-          XXXX
-        </button>
-        <button className="bg-white text-black p-2 rounded-xl w-36">
-          XXXX
-        </button>
+      <div className="flex gap-8 mt-8 text-center">
+        <Link
+          href={website}
+          className="bg-white text-black p-2 rounded-xl w-36"
+        >
+          Website
+        </Link>
+
+        <Link
+          href={chartUrl || "#"}
+          className="bg-white text-black p-2 px-4 rounded-xl w-fit"
+        >
+          {status === "PASSED" ? "Chart" : "Launch is pending"}
+        </Link>
       </div>
     </div>
   );

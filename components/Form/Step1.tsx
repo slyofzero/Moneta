@@ -102,11 +102,13 @@ export function FormStep1() {
         </button>
       </form>
 
-      <Image
-        src={"/ad.png"}
-        alt="ad"
-        className="border-[1px] border-white rounded-3xl mt-8 mb-32"
-      />
+      <Link href={"https://t.me/math_ciff"}>
+        <Image
+          src={"/ad.png"}
+          alt="ad"
+          className="border-[1px] border-white rounded-3xl mt-8 mb-32"
+        />
+      </Link>
     </div>
   );
 }

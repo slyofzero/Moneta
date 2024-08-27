@@ -4,4 +4,5 @@ export interface StoredForm extends Step1Data, Step2Data, Step3Data {
   status: "PASSED" | "FAILED" | "PENDING";
   user: string;
   collateralUsdValue: number;
+  chartUrl?: string;
 }

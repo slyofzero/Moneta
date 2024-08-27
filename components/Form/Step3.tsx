@@ -46,6 +46,12 @@ export function FormStep3() {
           defaultValue={step3Data.telegram}
         />
         <Input
+          name="telegramAdmin"
+          label="Telegram Admin"
+          placeholder="ex. @username"
+          defaultValue={step3Data.telegramAdmin}
+        />
+        <Input
           name="github"
           label="Github"
           placeholder="ex. https://github.com"

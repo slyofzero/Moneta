@@ -6,7 +6,7 @@ import {
   isValidName,
   isValidNumber,
 } from "@/utils";
-import { Dispatch, FormEvent } from "react";
+import { Dispatch, FormEvent, useEffect } from "react";
 import { Step2Data, useFormData } from "@/state";
 import { useRouter } from "next/router";
 import { DatePicker, DropDown, Link } from "../Common";
@@ -40,6 +40,25 @@ export function FormStep2() {
     setStep2Data((prev) => ({ ...prev, ...formData }));
     router.push({ pathname: router.pathname, query: { step: 3 } });
   };
+
+  const isLpOnly = step2Data.raiseType === "LP only";
+
+  useEffect(
+    () => {
+      if (
+        step2Data.raiseType ===
+        "LP + Marketing Funds (Unsecured - Contact Team)"
+      ) {
+        window.open("https://forms.gle/reF8ZAQ1c32z2e7j8", "_blank");
+        setStep2Data((prev) => ({
+          ...prev,
+          raiseType: "LP + Marketing Funds (Collateral Backed)",
+        }));
+      }
+    },
+    // eslint-disable-next-line
+    [step2Data.raiseType]
+  );
 
   return (
     <form
@@ -76,7 +95,6 @@ export function FormStep2() {
           label="Liquidity Locked [Days]"
           placeholder="Liquidity Locked Days after Launch Success is determined"
           match={[isValidNumber]}
-          required
           defaultValue={step2Data.liquidityLocked}
         />
         <Input
@@ -87,42 +105,49 @@ export function FormStep2() {
           required
           defaultValue={step2Data.loanAmountLP}
         />
-        <Input
-          name="collateralAsset"
-          label="Preferred asset for collateral [ERC20]"
-          placeholder="For LFP without collateral select ‘non collateral backed type’"
-          match={[isValidErc20Token]}
-          required
-          defaultValue={step2Data.collateralAsset}
-        />
-        <Input
-          name="loanAmountMarketing"
-          label="Loan Amount [Marketing - ETH]"
-          placeholder="For LFP without collateral select ‘non collateral backed type’"
-          match={[isValidNumber]}
-          required
-          defaultValue={step2Data.loanAmountMarketing}
-        />
-        <Input
-          name="collateralAmount"
-          label="Amount for collateral [Token Value]"
-          placeholder="$ Value is auto calculated using Dextools API"
-          match={[isValidNumber]}
-          required
-          defaultValue={step2Data.collateralAmount}
-        />
+        {!isLpOnly && (
+          <>
+            <Input
+              name="collateralAsset"
+              label="Preferred asset for collateral [ERC20]"
+              placeholder="For LFP without collateral select ‘non collateral backed type’"
+              match={[isValidErc20Token]}
+              required
+              defaultValue={step2Data.collateralAsset}
+            />
+            <Input
+              name="loanAmountMarketing"
+              label="Loan Amount [Marketing - ETH]"
+              placeholder="For LFP without collateral select ‘non collateral backed type’"
+              match={[isValidNumber]}
+              required
+              defaultValue={step2Data.loanAmountMarketing}
+            />
+            <Input
+              name="collateralAmount"
+              label="Amount for collateral [Token Value]"
+              placeholder="$ Value is auto calculated using Dextools API"
+              match={[isValidNumber]}
+              required
+              defaultValue={step2Data.collateralAmount}
+            />
+          </>
+        )}
+
         <DatePicker
           name="launchDate"
           label="Launch Date [UTC Timezone]"
           setValue={setStep2Data as Dispatch<SetStateAction<Step2Data>>}
           defaultValue={step2Data.launchDate}
         />
-        <DatePicker
-          name="repaymentDate"
-          label="Final Repayment Date [UTC Timezone]"
-          setValue={setStep2Data as Dispatch<SetStateAction<Step2Data>>}
-          defaultValue={step2Data.repaymentDate}
-        />
+        {!isLpOnly && (
+          <DatePicker
+            name="repaymentDate"
+            label="Final Repayment Date [UTC Timezone]"
+            setValue={setStep2Data as Dispatch<SetStateAction<Step2Data>>}
+            defaultValue={step2Data.repaymentDate}
+          />
+        )}
         <DatePicker
           name="loanDisbursementDate"
           label="Loan Disbursement Date [UTC Timezone]"
@@ -152,7 +177,6 @@ export function FormStep2() {
           label="Tax Wallet 1"
           placeholder=""
           match={[isValidEthAddress]}
-          required
           defaultValue={step2Data.taxWallet1}
         />
         <Input
@@ -160,7 +184,6 @@ export function FormStep2() {
           label="Tax Wallet 2"
           placeholder=""
           match={[isValidEthAddress]}
-          required
           defaultValue={step2Data.taxWallet2}
         />
       </div>
