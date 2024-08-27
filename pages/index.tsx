@@ -91,7 +91,7 @@ export default function ProfilePage() {
             our documentation or reach out to us on our socials
           </h6>
 
-          <h6 className="fixed top-32 font-bold right-16 text-yellow-500">
+          <h6 className="lg:fixed text-center mt-8 top-32 font-bold right-16 text-yellow-500">
             1 MNTA = ${price}
           </h6>
         </div>
