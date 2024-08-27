@@ -45,7 +45,10 @@ const cardData: CardProps[] = [
 
 function Card({ title, btn1, btn1Link, btn2, btn2Link, reverse }: CardProps) {
   return (
-    <div className="flex flex-col justify-center items-center gap-8 bg-zinc-900 p-4 h-[300px] w-full rounded-md">
+    <div
+      style={{ boxShadow: "10px 0px 40px -10px rgba(255,245,245,0.25)" }}
+      className="flex border-[1.5px] border-gray-800 flex-col justify-center items-center gap-8 bg-zinc-900 p-4 h-[300px] w-full rounded-md"
+    >
       <h3 className="text-3xl text-center">{title}</h3>
 
       <div
@@ -80,19 +83,19 @@ export default function ProfilePage() {
   const price = data?.pairs.at(0)?.priceUsd;
 
   return (
-    <MainLayout className="lg:px-32 [&>header]:lg:px-32">
+    <MainLayout className="lg:px-24 [&>header]:lg:px-52">
       <div className="flex-grow flex flex-col items-center justify-center gap-16">
-        <div className="flex flex-col gap-2 relative">
+        <div className="flex flex-col gap-2 relative text-center">
+          <h6 className="lg:fixed text-center my-8 top-32 font-bold right-16 text-yellow-500">
+            1 MNTA = ${price}
+          </h6>
+
           <h6 className="text-xl text-center font-bold">
             Welcome to Moneta Finance Dapps
           </h6>
           <h6 className="text-sm">
             Navigate via below dapp options, for any queries, make sure to read
             our documentation or reach out to us on our socials
-          </h6>
-
-          <h6 className="lg:fixed text-center mt-8 top-32 font-bold right-16 text-yellow-500">
-            1 MNTA = ${price}
           </h6>
         </div>
 
