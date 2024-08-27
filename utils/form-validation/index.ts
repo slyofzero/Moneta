@@ -1,4 +1,6 @@
+import { PairsData } from "@/types";
 import { MatchFuncType } from "./types";
+import { apiFetcher } from "../api";
 
 export * from "./types";
 
@@ -33,6 +35,26 @@ export const isValidEthAddress: MatchFuncType = (address) => {
 
   if (!isAddressValid) {
     return "Please enter a valid Ethereum address.";
+  }
+
+  return true;
+};
+
+// ------------------------------ To check if the address is valid ------------------------------
+export const isValidErc20Token: MatchFuncType = async (address) => {
+  const ethAddressPattern = /^0x[a-fA-F0-9]{40}$/;
+  const isAddressValid = ethAddressPattern.test(address);
+
+  if (!isAddressValid) {
+    return "Please enter a valid ERC20 token.";
+  }
+
+  const tokenData = await apiFetcher<PairsData>(
+    `https://api.dexscreener.com/latest/dex/tokens/${address}`
+  );
+
+  if (!tokenData?.data?.pairs?.at(0)) {
+    return "Please enter a valid ERC20 token.";
   }
 
   return true;

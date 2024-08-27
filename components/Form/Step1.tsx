@@ -32,7 +32,7 @@ export function FormStep1() {
 
   return (
     <div
-      className={`flex flex-col text-xl mt-32 px-40 gap-12 ${poppins.className}`}
+      className={`flex flex-col text-xl mt-32 lg:px-40 gap-12 ${poppins.className}`}
     >
       <h1 className="ml-4">Application for Liquidity Financing</h1>
 
@@ -90,7 +90,7 @@ export function FormStep1() {
 
         <button
           type="submit"
-          className={`bg-white text-black ${saira.className} text-sm w-28 h-10 rounded-lg`}
+          className={`bg-white text-black ${saira.className} text-sm w-28 h-10 rounded-lg ml-auto lg:ml-0`}
         >
           Approve
         </button>
@@ -100,7 +100,7 @@ export function FormStep1() {
         src={"/ad.png"}
         alt="ad"
         className="border-[1px] border-white rounded-3xl mt-8 mb-32"
-      ></Image>
+      />
     </div>
   );
 }

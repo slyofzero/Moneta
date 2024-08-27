@@ -30,7 +30,7 @@ function FormStep({ step, caption }: FormStepProps) {
 
       <h6
         className={classNames(
-          "text-sm text-center",
+          "text-[10px] lg:text-sm text-center",
           active ? "font-semibold" : "font-extralight"
         )}
       >
@@ -42,7 +42,7 @@ function FormStep({ step, caption }: FormStepProps) {
 
 export function FormNav() {
   return (
-    <div className="flex gap-24 justify-center items-start mt-24">
+    <div className="flex lg:gap-24 justify-center items-start mt-24">
       <FormStep step={1} caption="Set your Token" />
       <FormStep step={2} caption="Enter the LFP information" />
       <FormStep step={3} caption="Project Information" />

@@ -1,6 +1,11 @@
 import { poppins } from "@/pages/_app";
 import { Input } from "../Common/Input";
-import { isValidEthAddress, isValidName, isValidNumber } from "@/utils";
+import {
+  isValidErc20Token,
+  isValidEthAddress,
+  isValidName,
+  isValidNumber,
+} from "@/utils";
 import { Dispatch, FormEvent } from "react";
 import { Step2Data, useFormData } from "@/state";
 import { useRouter } from "next/router";
@@ -41,7 +46,7 @@ export function FormStep2() {
       onSubmit={onSubmit}
       className={`flex flex-col gap-16 ${poppins.className}`}
     >
-      <div className="grid grid-cols-2 text-xl mt-32 gap-x-4 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 text-xl mt-16 lg:mt-32 gap-x-4 gap-6">
         <DropDown
           name="raiseType"
           label="Raise Type"
@@ -86,7 +91,7 @@ export function FormStep2() {
           name="collateralAsset"
           label="Preferred asset for collateral [ERC20]"
           placeholder="For LFP without collateral select ‘non collateral backed type’"
-          match={[isValidEthAddress]}
+          match={[isValidErc20Token]}
           required
           defaultValue={step2Data.collateralAsset}
         />
@@ -141,7 +146,7 @@ export function FormStep2() {
         />
       </div>
 
-      <div className="grid grid-cols-2 gap-x-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-4 gap-6">
         <Input
           name="taxWallet1"
           label="Tax Wallet 1"
@@ -168,7 +173,7 @@ export function FormStep2() {
       <div className="flex flex-col gap-2 items-end mb-32">
         <span>Estimated mcap $</span>
 
-        <div className="flex gap-4 justify-end">
+        <div className="flex flex-col lg:flex-row gap-4 justify-center w-full lg:justify-end text-center">
           <Link
             href={"/form?step=1"}
             className="border-[1.5px] px-16 py-2 rounded-xl"

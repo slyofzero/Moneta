@@ -20,13 +20,17 @@ const steps = {
 export default function Home() {
   const router = useRouter();
   const step = Number(router.query.step) as 1 | 2 | 3 | 4;
-  useEffect(() => {
-    if (!isNaN(step)) {
-      router.push({ pathname: router.pathname, query: { step } });
-    } else {
-      router.push({ pathname: router.pathname, query: { step: 1 } });
-    }
-  }, [step]);
+  useEffect(
+    () => {
+      if (!isNaN(step)) {
+        router.push({ pathname: router.pathname, query: { step } });
+      } else {
+        router.push({ pathname: router.pathname, query: { step: 1 } });
+      }
+    },
+    // eslint-disable-next-line
+    [step]
+  );
 
   return (
     <MainLayout>

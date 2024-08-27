@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useAccount } from "wagmi";
 import { Link } from "../Common";
+import { shortenAddress } from "@/utils/general";
 
 interface RowProps {
   item: string;
@@ -13,7 +14,7 @@ interface RowProps {
 }
 function Row({ item, value }: RowProps) {
   return (
-    <div className="flex justify-between border-b-[1.5px] border-gray-800 pb-1">
+    <div className="flex justify-between border-b-[1.5px] border-gray-800 pb-1 gap-8">
       <span className="text-gray-400">{item}</span>
       <span className={saira.className}>{value || "—"}</span>
     </div>
@@ -45,14 +46,14 @@ export function FormStep4() {
   );
 
   const tokenData = {
-    "CA Deployer": step1Data.deployer,
+    "CA Deployer": shortenAddress(step1Data.deployer),
     "Total Supply": step1Data.supply,
     "Token Liquidity %": step2Data.liquidity,
     "Loan Amount LP + Marketing":
       step2Data.loanAmountLP + step2Data.loanAmountMarketing,
     "Loan Disbursement Time": step2Data.loanDisbursementDate,
-    "Liquidity Unlock Time [if finalised]": `${step2Data.liquidityLocked} days`,
-    "Collateral Token": `${step2Data.collateralAsset} (${pairData?.baseToken.symbol})`,
+    "Liquidity Unlock Time": `${step2Data.liquidityLocked} days`,
+    "Collateral Token": `${shortenAddress(step2Data.collateralAsset)} (${pairData?.baseToken.symbol})`,
     "Collateral Token Amount": `${step2Data.collateralAmount} ${pairData?.baseToken.symbol}`,
     "Collateral Token $ Value": `$${collateralUsdValue}`,
     "Token Launch Time": step2Data.launchDate,
@@ -98,7 +99,9 @@ export function FormStep4() {
 
   return (
     <div className="flex flex-col gap-16">
-      <div className={`flex flex-col gap-4 mt-32 ${poppins.className}`}>
+      <div
+        className={`flex flex-col gap-4 mt-16 lg:mt-32 ${poppins.className}`}
+      >
         {Object.entries(tokenData).map(([item, value]) => Row({ item, value }))}
       </div>
 
@@ -114,16 +117,16 @@ export function FormStep4() {
 
       <Row item="Description" value={step3Data.description} />
 
-      <div className="flex gap-4 justify-end mb-32">
+      <div className="flex flex-col lg:flex-row gap-4 justify-end mb-32">
         <Link
           href={"/form?step=3"}
-          className="border-[1.5px] px-16 py-2 rounded-xl"
+          className="border-[1.5px] px-16 py-2 rounded-xl text-center"
         >
           Back
         </Link>
         <button
           onClick={completeForm}
-          className="bg-white text-black border-[1.5px] px-16 py-2 rounded-xl font-semibold"
+          className="bg-white text-black border-[1.5px] px-16 py-2 rounded-xl font-semibold text-center"
         >
           Complete
         </button>

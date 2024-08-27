@@ -26,7 +26,7 @@ export function FormStep3() {
       onSubmit={onSubmit}
       className={`flex flex-col gap-16 ${poppins.className}`}
     >
-      <div className="grid grid-cols-2 text-xl mt-32 gap-x-4 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 text-xl mt-16 lg:mt-32 gap-x-4 gap-6">
         <Input
           name="logo"
           label="Logo"
@@ -94,7 +94,7 @@ export function FormStep3() {
         />
       </div>
 
-      <div className="flex gap-4 justify-end mt-12 mb-32">
+      <div className="flex flex-col lg:flex-row gap-4 justify-end mt-12 mb-32 text-center">
         <Link
           href={"/form?step=2"}
           className="border-[1.5px] px-16 py-2 rounded-xl"
