@@ -23,9 +23,9 @@ const cardData: CardProps[] = [
   {
     title: "Moneta Mortgaging Dapp",
     btn1: "Documentation",
-    btn1Link: "#",
-    btn2: "Coming Soon",
-    btn2Link: "#",
+    btn1Link: "https://monetafi.gitbook.io/moneta-wp",
+    btn2: "Mortage DApp",
+    btn2Link: "https://loan.monetafi.org/",
   },
   {
     title: "Moneta Dashboard As A Service",
